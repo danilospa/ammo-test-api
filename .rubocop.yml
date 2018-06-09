@@ -1,0 +1,33 @@
+AllCops:
+  Include:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'app/**/*'
+  TargetRubyVersion: 2.5.1
+  DisplayCopNames: true
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/ModuleLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/AbcSize:
+  Max: 20
+
+Style/Encoding:
+  Enabled: false
+
+Documentation:
+  Enabled: false
