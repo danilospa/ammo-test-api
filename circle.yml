@@ -3,6 +3,7 @@ machine:
     version: 2.5.1
   services:
     - redis
+    - docker
 
 dependencies:
   post:
@@ -18,3 +19,14 @@ test:
     - bundle exec rspec
   post:
     - bundle exec rubocop
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - aws configure set default.region us-east-1
+      - aws configure set aws_access_key_id $AWS_ACCESS_KEY
+      - aws configure set aws_secret_access_key $AWS_SECRET_KEY
+      - docker login -u danilospa -p $DOCKER_PASSWORD -e danilospalbuquerque@gmail.com
+      - docker build -t danilospa/ammo-test-api:latest .
+      - docker push danilospa/ammo-test-api:latest

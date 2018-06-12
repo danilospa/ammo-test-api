@@ -61,3 +61,10 @@ Afterwards, import data to Elasticsearch and Redis running a command on the appl
 $ docker ps | grep 9292
 $ docker exec -it <container_id> ruby import_data.rb
 ```
+
+## How to deploy
+
+Production deploy is made automatically by [CircleCI](https://circleci.com/gh/danilospa/ammo-test-api) when merging into master branch.  
+After the continuous integration builds and pushes the docker image to [Dockerhub](https://hub.docker.com/r/danilospa/ammo-test-api/), [Watchtower](https://github.com/v2tec/watchtower) verifies for updates on the image, pull it and start again.  
+Watchtower and ammo-test-api currently runs on the same AWS EC2, along with a Nginx with reverse proxy to the application.
+
