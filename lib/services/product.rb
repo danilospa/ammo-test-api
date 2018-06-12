@@ -10,9 +10,12 @@ module Services
       @search_service = search_service
     end
 
-    def search_by_name(term: nil)
+    def search_by_name(term: nil, page_size: 10, page: 1)
       definition = {
-        sort: ['id']
+        sort: ['id'],
+        size: page_size,
+        from: (page - 1) * page_size
+
       }
       definition[:query] = {
         match: { name: term }

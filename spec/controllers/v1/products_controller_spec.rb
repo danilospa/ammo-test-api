@@ -42,6 +42,19 @@ RSpec.describe V1::ProductsController do
       end
     end
 
+    context 'when specifying a page number and a page size' do
+      before { get '/products', page_size: 1, page: 2 }
+
+      it 'returns status code 200' do
+        expect(last_response.status).to eq 200
+      end
+
+      it 'returns results paginated' do
+        expected_product = JSON.parse(products[1].to_json)
+        expect(body).to eq 'products' => [expected_product]
+      end
+    end
+
     context 'when search term is provided' do
       context 'when a product is found' do
         before { get '/products', q: 'grande' }

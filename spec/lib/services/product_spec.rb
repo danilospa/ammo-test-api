@@ -28,6 +28,16 @@ RSpec.describe Services::Product do
       subject.search_by_name
     end
 
+    it 'sets specified page size' do
+      expect(search_service).to receive(:search).with(hash_including(size: 5))
+      subject.search_by_name(page_size: 5)
+    end
+
+    it 'sets specified offset' do
+      expect(search_service).to receive(:search).with(hash_including(from: 10))
+      subject.search_by_name(page_size: 5, page: 3)
+    end
+
     it 'gets products for results' do
       allow(search_service).to receive(:search).and_return([ { '_id' => 1 }])
       expect(subject).to receive(:get).with(1)
