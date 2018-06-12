@@ -14,7 +14,7 @@ module Services
     end
 
     def search(query)
-      @client.search(index: INDEX_NAME, body: query)['hits']['hits']
+      @client.search(index: INDEX_NAME, body: query)['hits']
     end
 
     def index(type, id, body)

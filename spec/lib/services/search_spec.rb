@@ -9,7 +9,7 @@ RSpec.describe Services::Search do
 
   describe '#search' do
     before do
-      allow(client).to receive(:search).and_return('hits' => { 'hits' => 'search results' })
+      allow(client).to receive(:search).and_return('hits' => 'search results')
     end
 
     it 'calls search on client with correct arguments' do

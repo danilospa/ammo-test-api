@@ -10,7 +10,7 @@ RSpec.describe Services::Product do
 
   describe '#search_by_name' do
     before do
-      allow(search_service).to receive(:search).and_return([])
+      allow(search_service).to receive(:search).and_return('hits' => [])
     end
 
     it 'searches without query when no term is provided' do
@@ -39,15 +39,20 @@ RSpec.describe Services::Product do
     end
 
     it 'gets products for results' do
-      allow(search_service).to receive(:search).and_return([ { '_id' => 1 }])
+      allow(search_service).to receive(:search).and_return('hits' => [{ '_id' => 1 }])
       expect(subject).to receive(:get).with(1)
       subject.search_by_name
     end
 
     it 'returns products' do
-      allow(search_service).to receive(:search).and_return([ { '_id' => 1 }])
-      expect(subject).to receive(:get).and_return('product from cache')
-      expect(subject.search_by_name).to eq ['product from cache']
+      allow(search_service).to receive(:search).and_return('hits' => [ { '_id' => 1 }])
+      allow(subject).to receive(:get).and_return('product from cache')
+      expect(subject.search_by_name[:products]).to eq ['product from cache']
+    end
+
+    it 'returns total elements' do
+      allow(search_service).to receive(:search).and_return('total' => 10, 'hits' => [])
+      expect(subject.search_by_name[:total]).to eq 10
     end
   end
 

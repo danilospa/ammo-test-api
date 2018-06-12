@@ -8,7 +8,8 @@ RSpec.describe V1::ProductsController do
   describe 'get /products' do
     products = [
       { id: 1, name: 'Cama grande' },
-      { id: 2, name: 'Cama pequena' }
+      { id: 2, name: 'Cama pequena' },
+      { id: 3, name: 'toalha pequena' }
     ]
     cache_service = Services::Cache.new
     search_service = Services::Search.new
@@ -38,7 +39,7 @@ RSpec.describe V1::ProductsController do
 
       it 'returns all products' do
         expected_products = products.map { |p| JSON.parse(p.to_json) }
-        expect(body).to eq 'products' => expected_products
+        expect(body).to eq 'products' => expected_products, 'total' => 3, 'pages' => 1
       end
     end
 
@@ -51,7 +52,7 @@ RSpec.describe V1::ProductsController do
 
       it 'returns results paginated' do
         expected_product = JSON.parse(products[1].to_json)
-        expect(body).to eq 'products' => [expected_product]
+        expect(body).to eq 'products' => [expected_product], 'total' => 3, 'pages' => 3
       end
     end
 
@@ -65,7 +66,7 @@ RSpec.describe V1::ProductsController do
 
         it 'returns found products' do
           expected_product = JSON.parse(products[0].to_json)
-          expect(body).to eq 'products' => [expected_product]
+          expect(body).to eq 'products' => [expected_product], 'total' => 1, 'pages' => 1
         end
       end
 
@@ -76,8 +77,8 @@ RSpec.describe V1::ProductsController do
           expect(last_response.status).to eq 200
         end
 
-        it 'returns correct products' do
-          expect(body).to eq 'products' => []
+        it 'returns no products' do
+          expect(body).to eq 'products' => [], 'total' => 0, 'pages' => 0
         end
       end
     end

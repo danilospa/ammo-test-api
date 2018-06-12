@@ -22,7 +22,10 @@ module Services
       } unless term.nil?
 
       response = @search_service.search(definition)
-      response.map { |result| get(result['_id']) }
+      {
+        products: response['hits'].map { |result| get(result['_id']) },
+        total: response['total']
+      }
     end
 
     def get(id)
