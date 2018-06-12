@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require './app/controllers/products_controller'
+require './app/controllers/v1/products_controller'
 
-RSpec.describe ProductsController do
+RSpec.describe V1::ProductsController do
   let(:body) { JSON.parse(last_response.body) }
 
   describe 'get /products' do

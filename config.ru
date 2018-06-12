@@ -2,8 +2,12 @@
 
 require './application'
 
-Dir.glob('./app/controllers/*.rb').each { |file| require file }
+Dir.glob('./app/controllers/**/*.rb').each { |file| require file }
 
 use HealthChecksController
-use ProductsController
+
+map '/v1' do
+  use V1::ProductsController
+end
+
 run Application
