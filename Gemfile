@@ -4,8 +4,9 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'elasticsearch', '6.0.3'
 gem 'dotenv', '2.4.0'
+gem 'elasticsearch', '6.0.3'
+gem 'puma', '3.11.4'
 gem 'redis', '4.0.1'
 gem 'sinatra', '2.0.3'
 gem 'sinatra-contrib', '2.0.3'

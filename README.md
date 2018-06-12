@@ -40,7 +40,7 @@ $ ruby import_data.rb
 
 To start the server, run:
 ```bash
-$ bundle exec rackup
+$ bundle exec puma
 ```
 
 The server should be up and listening on port 9292.

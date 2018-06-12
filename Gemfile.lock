@@ -41,6 +41,7 @@ GEM
     pry-byebug (3.6.0)
       byebug (~> 10.0)
       pry (~> 0.10)
+    puma (3.11.4)
     rack (2.0.5)
     rack-protection (2.0.3)
       rack
@@ -96,6 +97,7 @@ DEPENDENCIES
   dotenv (= 2.4.0)
   elasticsearch (= 6.0.3)
   pry-byebug (= 3.6.0)
+  puma (= 3.11.4)
   rack-test (= 1.0.0)
   redis (= 4.0.1)
   rspec (= 3.7.0)
