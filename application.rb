@@ -2,6 +2,7 @@
 
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'dotenv/load'
 
 class Application < Sinatra::Base
   configure :development do

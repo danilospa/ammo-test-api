@@ -16,6 +16,11 @@ $ gem install bundler
 $ bundler install -j4
 ```
 
+Copy project configuration file and change it as needed:
+```bash
+$ cp env.example .env
+```
+
 Before starting the server, you should execute both Elasticsearch and Redis. The easiest way is to run through docker:
 ```bash
 $ docker run -p 9200:9200 elasticsearch

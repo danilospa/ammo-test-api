@@ -4,7 +4,7 @@ require 'redis'
 
 module Services
   class Cache
-    @@client = Redis.new
+    @@client = Redis.new(host: ENV['REDIS_HOST'], port: ENV['REDIS_PORT'])
     PROXIED_METHODS = %w[get set del]
 
     def initialize(client = @@client)

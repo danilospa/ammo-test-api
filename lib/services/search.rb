@@ -6,7 +6,7 @@ module Services
   class Search
     attr_reader :client
 
-    @@client = Elasticsearch::Client.new
+    @@client = Elasticsearch::Client.new(host: ENV['ELASTICSEARCH_HOST'], port: ENV['ELASTICSEARCH_PORT'])
     INDEX_NAME = "website-#{ENV['RACK_ENV']}"
 
     def initialize(client = @@client)
