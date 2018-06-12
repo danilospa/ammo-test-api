@@ -17,9 +17,11 @@ module Services
         from: (page - 1) * page_size
 
       }
-      definition[:query] = {
-        match: { name: term }
-      } unless term.nil?
+      unless term.nil?
+        definition[:query] = {
+          match: { name: term }
+        }
+      end
 
       response = @search_service.search(definition)
       {

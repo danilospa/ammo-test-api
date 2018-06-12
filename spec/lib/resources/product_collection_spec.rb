@@ -3,7 +3,7 @@
 require './lib/resources/product_collection'
 
 RSpec.describe Resources::ProductCollection do
-  let(:products) { ['first_product', 'second_product'] }
+  let(:products) { %w[first_product second_product] }
   let(:total) { 10 }
   let(:page_size) { 3 }
 

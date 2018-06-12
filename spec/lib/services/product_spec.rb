@@ -45,7 +45,7 @@ RSpec.describe Services::Product do
     end
 
     it 'returns products' do
-      allow(search_service).to receive(:search).and_return('hits' => [ { '_id' => 1 }])
+      allow(search_service).to receive(:search).and_return('hits' => [{ '_id' => 1 }])
       allow(subject).to receive(:get).and_return('product from cache')
       expect(subject.search_by_name[:products]).to eq ['product from cache']
     end

@@ -14,7 +14,7 @@ RSpec.describe V1::ProductsController do
     cache_service = Services::Cache.new
     search_service = Services::Search.new
     wait_for_index = lambda do |index:, id:|
-      while !search_service.client.exists?(index: index, id: id); end
+      until search_service.client.exists?(index: index, id: id); end
     end
 
     before :all do

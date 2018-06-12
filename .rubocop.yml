@@ -1,8 +1,10 @@
 AllCops:
   Include:
     - 'Gemfile'
-    - 'Rakefile'
+    - 'import_data'
     - 'app/**/*'
+    - 'lib/**/*'
+    - 'spec/**/*'
   TargetRubyVersion: 2.5.1
   DisplayCopNames: true
 
@@ -30,4 +32,7 @@ Style/Encoding:
   Enabled: false
 
 Documentation:
+  Enabled: false
+
+Style/ClassVars:
   Enabled: false
