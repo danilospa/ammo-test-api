@@ -14,7 +14,7 @@ RSpec.describe Services::Product do
     end
 
     it 'searches without query when no term is provided' do
-      expect(search_service).to receive(:search).with(hash_including(query: {}))
+      expect(search_service).to receive(:search).with(hash_not_including(query: anything))
       subject.search_by_name
     end
 

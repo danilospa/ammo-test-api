@@ -11,16 +11,14 @@ module Services
     end
 
     def search_by_name(term: nil)
-      query = if term.nil?
-                {}
-              else
-                {
-                  match: {
-                    name: term
-                  }
-                }
-              end
-      response = @search_service.search(query: query, sort: ['id'])
+      definition = {
+        sort: ['id']
+      }
+      definition[:query] = {
+        match: { name: term }
+      } unless term.nil?
+
+      response = @search_service.search(definition)
       response.map { |result| get(result['_id']) }
     end
 

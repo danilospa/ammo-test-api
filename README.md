@@ -5,8 +5,8 @@ This project is the API for the AMMO tech test. It provides a single endpoint to
 ## Dependencies
 
 - Ruby 2.5.1
-- Elasticsearch
-- Redis
+- Elasticsearch 6.2.4
+- Redis 4.0.9
 
 ## How to contribute
 
@@ -23,14 +23,8 @@ $ cp env.example .env
 
 Before starting the server, you should execute both Elasticsearch and Redis. The easiest way is to run through docker:
 ```bash
-$ docker run -p 9200:9200 elasticsearch
-$ docker run -p 6379:6379 redis
-```
-
-You can also map the volumes so the data won't be lost when container stops.
-```bash
-$ docker run -p 9200:9200 -v $(pwd)/elasticsearch/data:/usr/share/elasticsearch/data elasticsearch
-$ docker run -p 6379:6379 -v $(pwd)/redis/data:/data redis
+$ docker run -it -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+$ docker run -p 6379:6379 redis:4.0.9
 ```
 
 Import data to both Elasticsearch and Redis:
