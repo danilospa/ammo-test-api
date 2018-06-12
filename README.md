@@ -54,3 +54,16 @@ To run the linter:
 ```bash
 $ bundle exec rubocop
 ```
+
+## How to run
+
+You can follow the steps above to run using Ruby from your machine. Or you can use Docker to run the main application too. The following command will start it and both Elasticsearch and Redis:
+```bash
+$ docker-compose up
+```
+
+Afterwards, import data to Elasticsearch and Redis running a command on the application container. First, get the container ID, then execute the command.
+```bash
+$ docker ps | grep 9292
+$ docker exec -it <container_id> ruby import_data.rb
+```
