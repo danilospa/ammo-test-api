@@ -1,0 +1,20 @@
+machine:
+  ruby:
+    version: 2.5.1
+  services:
+    - redis
+
+dependencies:
+  post:
+    - wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.zip
+    - unzip elasticsearch-6.2.4.zip
+    - elasticsearch-6.2.4/bin/elasticsearch: {background: true}
+    - sleep 10 && wget --waitretry=5 --retry-connrefused -v http://127.0.0.1:9200/
+
+test:
+  pre:
+    - cp .env.example .env
+  override:
+    - bundle exec rspec
+  post:
+    - bundle exec rubocop
