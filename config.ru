@@ -5,6 +5,7 @@ require './application'
 Dir.glob('./app/**/*.rb').each { |file| require file }
 
 use Middlewares::Cors
+use Middlewares::Camelize
 use HealthChecksController
 
 map '/v1' do
