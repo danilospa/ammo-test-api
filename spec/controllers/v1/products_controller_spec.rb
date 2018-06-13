@@ -44,7 +44,7 @@ RSpec.describe V1::ProductsController do
     end
 
     context 'when specifying a page number and a page size' do
-      before { get '/products', page_size: 1, page: 2 }
+      before { get '/products', pageSize: 1, page: 2 }
 
       it 'returns status code 200' do
         expect(last_response.status).to eq 200
