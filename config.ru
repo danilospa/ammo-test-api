@@ -2,8 +2,9 @@
 
 require './application'
 
-Dir.glob('./app/controllers/**/*.rb').each { |file| require file }
+Dir.glob('./app/**/*.rb').each { |file| require file }
 
+use Middlewares::Cors
 use HealthChecksController
 
 map '/v1' do
