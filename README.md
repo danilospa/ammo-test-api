@@ -27,6 +27,8 @@ $ docker run -it -p 9200:9200 docker.elastic.co/elasticsearch/elasticsearch:6.2.
 $ docker run -p 6379:6379 redis:4.0.9
 ```
 
+Note: if you face problems related to virtual memory too low, execute the command `sudo sysctl -w vm.max_map_count=262144`. Reference [here](https://github.com/docker-library/elasticsearch/issues/111).
+
 Import data to both Elasticsearch and Redis:
 ```bash
 $ ruby import_data.rb
