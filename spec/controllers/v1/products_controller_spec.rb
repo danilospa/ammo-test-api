@@ -13,17 +13,14 @@ RSpec.describe V1::ProductsController do
     ]
     cache_service = Services::Cache.new
     search_service = Services::Search.new
-    wait_for_index = lambda do |index:, id:|
-      until search_service.client.exists?(index: index, id: id); end
-    end
 
     before :all do
       products.each do |product|
         id = product[:id]
         search_service.index('product', id, product)
         cache_service.set(id, product.to_json)
-        wait_for_index.call(index: Services::Search::INDEX_NAME, id: id)
       end
+      search_service.client.indices.flush(index: Services::Search::INDEX_NAME)
     end
     after :all do
       search_service.delete_index
